@@ -1,0 +1,48 @@
+class Vehicle:
+    def __init__(self, x, y):
+        self.movement_reg_on = False
+        self.x = x
+        self.y = y
+
+    def start_registration(self):
+        if a == "Вкл":
+            self.movement_reg_on = True
+
+    def movement(self):
+        if self.movement_reg_on:
+            return abs((self.x**2 + self.y**2)**0.5 * n)
+
+
+x, y = [int(x) for x in input().split()]
+vector = Vehicle(x, y)
+
+n = int(input())
+a = input()
+
+vector.start_registration()
+
+way = vector.movement()
+print(way)
+
+
+class Car(Vehicle):
+    def __init__(self, fuel, consumption):
+        self.fuel = fuel
+        self.consumption = consumption
+
+    def get_fuel(self):
+        return self.fuel
+
+    def set_fuel(self):
+        if fuel < cost:
+            fuel += cost - fuel
+
+    def cost(self):
+        return way / consumption
+
+
+car = Car(30) # В баке 30 л
+consumption = int(input())
+Cost = Car.cost()  # Расход
+
+if car.set_fuel(car.get_fuel())
