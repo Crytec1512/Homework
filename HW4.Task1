@@ -1,0 +1,54 @@
+import math
+
+class Vector:
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def length(self):
+        return (self.x**2 + self.y**2 + self.z**2)**0.5
+
+    def sum(self, other):
+        sum_x = self.x + other.x
+        sum_y = self.y + other.y
+        sum_z = self.z + other.z
+        return abs((sum_x**2 + sum_y**2 + sum_z**2)**0.5)
+
+    def diff(self, other):
+        diff_x = self.x - other.x
+        diff_y = self.y - other.y
+        diff_z = self.z - other.z
+        return abs((diff_x ** 2 + diff_y ** 2 + diff_z ** 2) ** 0.5)
+
+    def mult(self):
+        mult_x = self.x * a
+        mult_y = self.y * a
+        mult_z = self.z * a
+        return abs((mult_x ** 2 + mult_y ** 2 + mult_z ** 2) ** 0.5)
+
+    def scalar(self, other):
+        return abs(self.x * other.x + self.y * other.y + self.z * other.z)
+
+
+x, y, z = [int(x) for x in input("Введи координаты вектора").split()]
+vector = Vector(x, y, z)
+Length = vector.length()
+print("Длина вектора:", Length)
+x1,y1,z1 = [int(x) for x in input("Введи координаты второго вектора").split()]
+
+vector1 = Vector(x1, y1, z1)
+
+Sum = vector.sum(vector1)
+print("Сумма векторов:", Sum)
+Diff = vector.diff(vector1)
+print("Разность векторов:", Diff)
+
+a = int(input())
+
+multiplication = vector.mult()
+
+print("Умножение вектора с координатами {", x, y, z, "} на число", a, "равно:", multiplication)
+
+Scalar = vector.scalar(vector1)
+print("Скалярное произведение векторов равно:", Scalar)
