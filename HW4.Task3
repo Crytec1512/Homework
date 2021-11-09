@@ -1,0 +1,54 @@
+class Text:
+    def __init__(self, Line_Poss, Word_Poss):
+        self.Line_Poss = Line_Poss
+        self.Word_Poss = Word_Poss
+
+    def splitlines(self):
+        if isinstance(self, str):
+            return self.text.split("\n")
+
+    def split(self):
+        if isinstance(self, str):
+            return self.split()
+
+
+text = "Hello World, my name is Dima and I really glad to see you here again.\n I thought I lost you! \n Hope, you'll be great! \n Best wishes!"
+
+Word = Text(0, 8)
+Book = text.splitlines()
+CertainLine = Book[Word.Line_Poss]
+
+Line = CertainLine.split()
+Words = Line[Word.Word_Poss]
+CountWords = len(Line)
+
+print(len(Book))
+print(CertainLine)
+print(CountWords)
+print(Words)
+
+
+class EditableText(Text):
+    def __init__(self):
+        Text.__init__(self, Line_Poss, Word_Poss)
+
+    def replace(self):
+        if isinstance(self, str):
+            return self.replace("really", "truly")
+
+    def find(self):
+        Book[i].find(self)           # Нужно привести в красивый вид
+
+
+Line_Poss = 2
+Book[Line_Poss] = "Hope you'll die!"
+Line_Poss = 0
+Word_Poss = 5
+Unfounded_Word = "lost"
+for i in range(len(Book)):
+    Stoke_num = Unfounded_Word.find
+
+
+print(Stoke_num)
+print(CertainLine)
+print(" ".join(Book))
