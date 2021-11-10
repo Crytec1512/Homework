@@ -13,14 +13,19 @@ class Text:
 
 
 text = "Hello World, my name is Dima and I really glad to see you here again.\n I thought I lost you! \n Hope, you'll be great! \n Best wishes!"
-
 Word = Text(0, 8)
-Book = text.splitlines()
-CertainLine = Book[Word.Line_Poss]
 
-Line = CertainLine.split()
-Words = Line[Word.Word_Poss]
-CountWords = len(Line)
+
+Book = text.splitlines()
+try:
+    CertainLine = Book[Word.Line_Poss]
+    Line = CertainLine.split()
+    Words = Line[Word.Word_Poss]
+    CountWords = len(Line)
+except TypeError:
+    print("Неверные данные адреса слова")
+except IndexError:
+    print("Несущестувующая строка")
 
 print(len(Book))
 print(CertainLine)
@@ -41,14 +46,20 @@ class EditableText(Text):
 
 
 Line_Poss = 2
+
 Book[Line_Poss] = "Hope you'll die!"
+Unfounded_Word = "lost"
+
 Line_Poss = 0
 Word_Poss = 5
-Unfounded_Word = "lost"
+
 for i in range(len(Book)):
     Stoke_num = Unfounded_Word.find
 
 
 print(Stoke_num)
 print(CertainLine)
-print(" ".join(Book))
+try:
+    print(" ".join(Book))
+except TypeError:
+    print("Неверные данные для замены строки")
