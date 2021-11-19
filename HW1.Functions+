@@ -1,0 +1,9 @@
+import math
+
+
+def product(*args):
+    return math.prod(args)
+
+
+result = product(1, 5, 6, 7)
+print(result)
