@@ -1,0 +1,8 @@
+class Point:
+    def __init__(self, x: (int, float), y: (int, float)):
+        self.x = x
+        self.y = y
+
+    def dist(self, other: (int, float)):
+        if isinstance(other, Point):
+            return ((self.x - other.x)**2 + (self.y - other.y)**2)**0.5
