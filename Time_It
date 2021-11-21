@@ -1,0 +1,21 @@
+import time
+
+
+def time_it(func):
+
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        func(*args, **kwargs)
+        print("--- %s ---" % (time.time() - start))
+
+    return wrapper
+
+
+@time_it
+def original(a: (int, float), b: (int, float)):
+    while a > 0:
+        a = a - b
+        print(a)
+
+
+original(100000000, 7)
