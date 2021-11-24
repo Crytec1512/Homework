@@ -6,7 +6,7 @@ def time_it(func):
     def wrapper(*args, **kwargs):
         start = time.time()
         func(*args, **kwargs)
-        print("--- %s ---" % (time.time() - start))
+        print(" %s " % (time.time() - start))
 
     return wrapper
 
