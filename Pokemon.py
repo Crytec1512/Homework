@@ -1,63 +1,56 @@
 import requests
+from dataclasses import dataclass
 
 
+@dataclass(frozen=True)
 class BasePokemon:
-    def __init__(self, name: str):
-        self.name = name
-
-    def printer(self):
-        print(self.name, self.id, self.height, self.weight)
+    name: str
 
 
+@dataclass(frozen=True)
 class Pokemon(BasePokemon):
-    def __init__(self, id, name: str, height: int, weight: int) -> None:
-            self.name = name
-            self.id = id
-            self.height = height
-            self.weight = weight
+    name: str
+    id: int
+    height: int
+    weight: int
+#Здесь должен был быть __new__()
 
 
 class PokeAPI:
-
     def __init__(self):
         pass
 
-    def get_pokemon(self) -> Pokemon:
-        return Pokemon(requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["id"],
-                       requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["name"],
+    def get_pokemon(self: (int, str)) -> Pokemon:
+        return Pokemon(requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["name"],
+                       requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["id"],
                        requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["height"],
                        requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["weight"])
 
-    def get_all(self, get_full= True) -> (BasePokemon, Pokemon):
+    def get_all(self: int, get_full=True) -> (BasePokemon, Pokemon):    #Параметр get_full
+        if not get_full:
+            for i in range(898):    #Всего в API 898 покемонов
+                if i + 1 <= self:
+                    yield BasePokemon(requests.get(f'https://pokeapi.co/api/v2/pokemon/{i + 1}').json()["name"])
 
-        if isinstance(self, str):
-            self = (requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["id"])
-        if get_full == False:
-            while self != 0:
-                yield BasePokemon(requests.get(f'https://pokeapi.co/api/v2/pokemon/{self}').json()["name"])
-                self -= 1
         else:
-            while self != 0:
-                Poke = self.get_pokemon()
-                yield Poke
-                self -= 1
+            for i in range(898):
+                if i + 1 <= self:
+                    yield i+1
 
-
-    EnterData = "ditto"
+    EnterData = "ditto"     #Покемон на вывод
+    How_Many = 50           #Сколько первых покемонов
     PokeID = get_pokemon(EnterData)
     weight = 0
+    print(PokeID.name, PokeID.id, PokeID.height, PokeID.weight)
+    for object in get_all(How_Many):
+        if isinstance(object, int):
+            Poke = get_pokemon(object)
+            print(Poke)
+            if Poke.weight > weight:
+                weight = Poke.weight
 
-    for i in get_all(EnterData):
-        if isinstance(i, Pokemon):
-            if i.weight > weight:
-                weight = i.weight
+        elif isinstance(object, BasePokemon):
+            print(object.name)
 
-        elif isinstance(i, BasePokemon):
-            print(i.name)
     print(weight)
-    print(PokeID.id, PokeID.name, PokeID.height, PokeID.weight)
-
-
-
-
 
